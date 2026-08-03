@@ -13,13 +13,15 @@ with a **visual side-by-side check**.
 
 ## Why this design
 
-Earlier attempts at prototype fidelity fail in a predictable way: the prototype
-gets *described* in ever-longer text contracts, an agent *re-generates* UI from
-those descriptions, drift appears, and more rules get added to the contract.
-Rule count grows, instruction-following degrades, and validation lands at the
-end of an epic when rework is most expensive.
+The initial problem was simple: a validated browser-renderable prototype could
+be lost during the normal BMad path from PRD to UX, architecture, and then
+development. Those stages can describe the intended product, but the
+prototype itself was not kept as a durable, actionable reference for the
+implementation work.
 
-This kit inverts that:
+This kit keeps that prototype present throughout delivery. It turns the
+prototype into versioned evidence that UI stories bind to directly, so the
+implemented product can be checked for parity with the validated reference:
 
 | Instead of | The kit uses |
 |---|---|

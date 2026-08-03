@@ -4,6 +4,11 @@ Every rule below exists because a real agentic-workflow failure produced it
 during weeks of field use on a production server-rendered web application,
 built epic by epic against a standalone SPA prototype. You get the rules without paying for the bugs.
 
+## Unreleased
+
+- Clarified the kit's original purpose: keep a validated prototype as an
+  actionable reference from PRD through UX, architecture, and development.
+
 ## v0.5.0 (2026-08-03) - BMad module packaging
 
 - Added the `ppk` BMad module definition and `ppk-setup` skill.
