@@ -1,0 +1,8 @@
+{
+  "name": "prototype-parity-kit-tools",
+  "private": true,
+  "description": "Pinned Playwright runtime for the prototype-parity-kit scripts. Install here and export PARITY_TOOLS_DIR to this directory.",
+  "dependencies": {
+    "playwright": "1.61.1"
+  }
+}
