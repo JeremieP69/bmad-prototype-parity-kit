@@ -4,6 +4,14 @@ Every rule below exists because a real agentic-workflow failure produced it
 during weeks of field use on a production server-rendered web application,
 built epic by epic against a standalone SPA prototype. You get the rules without paying for the bugs.
 
+## v0.5.0 (2026-08-03) - BMad module packaging
+
+- Added the `ppk` BMad module definition and `ppk-setup` skill.
+- Registered five discoverable capabilities: module setup, design-source
+  capture, story binding, story parity gate, and epic parity audit.
+- Added a BMad custom-source installation path to the README.
+- Authorship metadata now identifies Jeremie PERERA as creator and maintainer.
+
 ## v0.4.4 (2026-08-03) - portable execution & closure consistency
 
 Fourth independent release audit fixes the final distribution blockers:

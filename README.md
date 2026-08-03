@@ -32,6 +32,7 @@ This kit inverts that:
 
 ```text
 skills/
+├── ppk-setup/               # registers the module and its help capabilities
 ├── proto-design-source/     # run once per prototype version: extract baselines,
 │   ├── SKILL.md             # rendered HTML, tokens; bind stories to artifacts
 │   ├── references/          # config schema + story-binding template
@@ -79,6 +80,21 @@ produces reviewable evidence.
 Claude Code (project): `cp -R skills/* .claude/skills/`
 Claude Code (global): `cp -R skills/* ~/.claude/skills/`
 Codex / BMAD project skills: `cp -R skills/* .agents/skills/`
+
+### Install as a BMad module
+
+Install directly from this repository, then invoke `ppk-setup` once in the
+target project to register the module configuration and its `bmad-help`
+capabilities:
+
+```bash
+npx bmad-method install \
+  --directory . \
+  --modules bmm \
+  --custom-source https://github.com/JeremieP69/bmad-prototype-parity-kit \
+  --tools codex \
+  --yes
+```
 
 ## Workflow placement
 
@@ -204,7 +220,7 @@ MIT - see `LICENSE`.
 
 ## Version
 
-v0.4.4 - see `CHANGELOG.md`: every rule in it comes from a real failure met
+v0.5.0 - see `CHANGELOG.md`: every rule in it comes from a real failure met
 in field use (lenient judges, phantom passes, frozen-screen drift, hardcoded
 example data, invisible tabs and overlays...). v0.3.0 superseded
 `prototype-driven-bmad-delivery` + `agent-prototype-parity-auditor` (v0.2.0),
