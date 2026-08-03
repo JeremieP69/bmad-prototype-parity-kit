@@ -1,7 +1,7 @@
 code: ppk
 name: "Prototype Parity Kit"
 description: "Versioned prototype evidence and visual parity gates for UI delivery"
-module_version: 0.5.0
+module_version: 0.5.1
 default_selected: false
 module_greeting: >
   Prototype Parity Kit is configured. Capture prototype evidence before UI implementation,

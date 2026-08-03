@@ -242,7 +242,7 @@ MIT - see `LICENSE`.
 
 ## Version
 
-v0.5.0 - see `CHANGELOG.md`: every rule in it comes from a real failure met
+v0.5.1 - see `CHANGELOG.md`: every rule in it comes from a real failure met
 in field use (lenient judges, phantom passes, frozen-screen drift, hardcoded
 example data, invisible tabs and overlays...). v0.3.0 superseded
 `prototype-driven-bmad-delivery` + `agent-prototype-parity-auditor` (v0.2.0),

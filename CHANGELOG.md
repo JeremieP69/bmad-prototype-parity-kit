@@ -4,7 +4,7 @@ Every rule below exists because a real agentic-workflow failure produced it
 during weeks of field use on a production server-rendered web application,
 built epic by epic against a standalone SPA prototype. You get the rules without paying for the bugs.
 
-## Unreleased
+## v0.5.1 (2026-08-03) - documentation clarification
 
 - Clarified the kit's original purpose: keep a validated prototype as an
   actionable reference from PRD through UX, architecture, and development.
