@@ -114,6 +114,26 @@ Brownfield (screens shipped before the kit): run `proto-parity-check` in audit
 mode over all shipped routes, turn findings into per-screen correction stories,
 then gate them normally.
 
+## Parity acceptance rule
+
+The gate works per route and per viewport: desktop and mobile each need their
+own verdict. It repeats **fix → capture → judge** while a story is open.
+
+- The pixel-difference signal is triage, not an automatic verdict. The normal
+  target is **at most 5% mismatch** (`warnPct`); it is not a generic “95%
+  match” score.
+- A route can pass only when it is under that target **and** every remaining
+  hotspot is explained as masked data or an approved deviation. A low number
+  never excuses a missing action, a wrong component primitive, or a layout
+  difference.
+- After two unsuccessful attempts on the same hotspot, the workflow runs a
+  style probe instead of continuing to adjust values blindly.
+- After **three iterations** on the same route and viewport without reducing
+  the mismatch by at least two percentage points, the gate stops and records
+  the diagnostic and the exact decision needed. It does not loop indefinitely.
+- Only `pass` and `pass-with-approved-deviation` can close the route and the
+  UI story.
+
 See `INTEGRATION.md` for the exact snippets to add to your story-creation and
 dev workflows, and `PROMPTS.md` for copy-paste prompts driving each mode.
 

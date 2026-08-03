@@ -8,6 +8,8 @@ built epic by epic against a standalone SPA prototype. You get the rules without
 
 - Clarified the kit's original purpose: keep a validated prototype as an
   actionable reference from PRD through UX, architecture, and development.
+- Added a concise README explanation of the per-viewport acceptance threshold
+  and the three-iteration stall stop.
 
 ## v0.5.0 (2026-08-03) - BMad module packaging
 
