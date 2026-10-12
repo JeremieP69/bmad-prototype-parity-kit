@@ -99,7 +99,7 @@ seeded, parity.config.json pairs/sessions ready for the epic's routes.
 Dev epic {N} end-to-end, unattended. For each story in order: create it with
 its Prototype Binding, implement by porting the design-source fragments, then
 run the parity gate in a loop (fix -> capture -> explain every hotspot ->
-delta rule -> re-fix) until every route x viewport passes.
+verify concrete finding -> re-fix when unresolved) until every route x viewport passes.
 
 If a story hits a decision that is mine (deviation approval, ambiguous data
 source): park THAT story with the question stated, and continue with the next

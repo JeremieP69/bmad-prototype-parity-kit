@@ -249,7 +249,7 @@ async function runProbe(config, configDir, args) {
   const sessionName = pair.session || (sessions.default ? 'default' : 'anonymous');
 
   const { chromium } = loadPlaywright();
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) });
   try {
     const size = { width: viewport.width, height: viewport.height };
     const protoPage = await (await browser.newContext({ viewport: size, deviceScaleFactor: 1 })).newPage();
@@ -312,7 +312,7 @@ async function main() {
   if (!pairs.length) throw new Error('No pairs to check.');
 
   const { chromium } = loadPlaywright();
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) });
   const results = [];
   try {
     const diffPage = await (await browser.newContext()).newPage();

@@ -153,6 +153,27 @@ seed data) so the mismatch signal stays meaningful. Keep the mismatch caused by
 *data* out; keep the mismatch caused by *layout, spacing, color, typography,
 component primitives* in.
 
+## Scoped context and isolated evidence (preferred)
+
+After bootstrapping the configuration and registry, read
+`references/mission-evidence.md`. For a known story scope, run
+`node {skill_dir}/scripts/mission.mjs context --config {dir}/parity.config.json --pairs ROUTE1,ROUTE2`
+and load its scoped documents instead of the global files. Global and ambiguous
+decisions are retained. The complete sources remain authoritative.
+
+Use `mission.mjs capture` with the same arguments for isolated evidence;
+it invokes the neighboring capture engine and returns the run directory.
+Open that run's composites and inspect its hotspots. The freshness preflight,
+independent review, all configured viewport coverage and real interaction checks
+remain mandatory. Record explicit reviews through `mission.mjs record-review`
+according to the reference. A later `--previous` still captures fresh pixels;
+only verified identical evidence can be proposed for reuse of a visual judgment.
+Never reuse interaction checks automatically or infer a global PASS.
+
+The lower-level capture commands below remain available for compatibility;
+they do not provide immutable history or reuse validation. Prefer the mission
+wrapper for story gates and epic-scoped audits.
+
 ## Gate mode (end of every UI story)
 
 0. **Baseline freshness first**: run
@@ -185,8 +206,8 @@ component primitives* in.
      data-to-mask, an approved deviation, or a named finding - an unexplained
      hotspot blocks the verdict;
    - **delta rule**: compare each pair's percentage with the previous run;
-     a pair whose percentage did not move was NOT fixed, whatever the change
-     summary claims - re-open its findings;
+     an unchanged percentage alone does not prove the fix failed. Verify the
+     concrete finding in its region and retain visual evidence of progress;
    - judge with fresh eyes: run the judgment as a distinct pass (ideally a
      different session/agent than the one that wrote the fix), reading only
      the composite, the hotspots, and the registry - not the fixer's summary;
@@ -263,7 +284,7 @@ component primitives* in.
      upstream property (font-size, line-height, font-family fallback, width),
      not the margins you were nudging.
    - **Stall stop:** after 3 iterations on the same route x viewport without
-     the mismatch dropping by at least 2 points, park the story: record the
+     demonstrated progress on the same concrete finding, park the story: record the
      probe output, your root-cause hypothesis, and the exact question for the
      user. Endless margin-nudging wastes a night; an honest diagnostic does
      not.

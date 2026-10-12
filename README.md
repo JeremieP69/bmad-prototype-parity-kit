@@ -42,7 +42,7 @@ skills/
 └── proto-parity-check/      # per-story gate + epic/brownfield audit
     ├── SKILL.md
     ├── references/          # deviations-registry spec (freeze hygiene, lifecycle)
-    └── scripts/parity_check.mjs
+    └── scripts/              # parity_check.mjs + mission.mjs
 tools/                       # pinned Playwright manifest (npm ci)
 LICENSE, CHANGELOG.md, INTEGRATION.md, PROMPTS.md
 ```
@@ -69,7 +69,7 @@ browser build so captures are identical across machines.
 
 ```bash
 node --test skills/proto-design-source/scripts/tests/test-capture_baselines.mjs \
-            skills/proto-parity-check/scripts/tests/test-parity_check.mjs
+            skills/proto-parity-check/scripts/tests/test-*.mjs
 ```
 
 Covers the pure helpers (arg parsing, url/route resolution, threshold
@@ -128,14 +128,38 @@ own verdict. It repeats **fix → capture → judge** while a story is open.
   difference.
 - After two unsuccessful attempts on the same hotspot, the workflow runs a
   style probe instead of continuing to adjust values blindly.
-- After **three iterations** on the same route and viewport without reducing
-  the mismatch by at least two percentage points, the gate stops and records
+- After **three iterations** on the same route and viewport without demonstrated progress
+  on the same concrete finding, the gate stops and records
   the diagnostic and the exact decision needed. It does not loop indefinitely.
 - Only `pass` and `pass-with-approved-deviation` can close the route and the
   UI story.
 
 See `INTEGRATION.md` for the exact snippets to add to your story-creation and
 dev workflows, and `PROMPTS.md` for copy-paste prompts driving each mode.
+
+## Scoped context and evidence reuse
+
+Use `proto-parity-check/scripts/mission.mjs` for story-scoped context and
+isolated evidence. It ships inside the skill, so both `.agents/skills` and
+`.claude/skills` installations include it. The capture engine remains available
+as the lower-level CLI.
+
+```bash
+node "$SKILLS_DIR"/proto-parity-check/scripts/mission.mjs context \
+  --config _bmad-output/design-source/parity.config.json --pairs HOME
+node "$SKILLS_DIR"/proto-parity-check/scripts/mission.mjs capture \
+  --config _bmad-output/design-source/parity.config.json --pairs HOME
+```
+
+Set `SKILLS_DIR` for your installation as shown below. Runs are written under
+`tools/parity/runs` by default; keep that directory out of version control.
+For reuse, explicitly set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an existing
+Chromium binary: the engine uses and fingerprints that same executable.
+Without it, captures still work but visual reuse is conservatively disabled.
+
+See [the evidence protocol](skills/proto-parity-check/references/mission-evidence.md)
+for review recording, privacy boundaries, safe diagnostics and `--previous`.
+Reported byte savings describe context size, not measured token usage.
 
 ## Quick start (5 minutes)
 
@@ -242,7 +266,7 @@ MIT - see `LICENSE`.
 
 ## Version
 
-v0.5.1 - see `CHANGELOG.md`: every rule in it comes from a real failure met
+v0.6.0 - see `CHANGELOG.md`: every rule in it comes from a real failure met
 in field use (lenient judges, phantom passes, frozen-screen drift, hardcoded
 example data, invisible tabs and overlays...). v0.3.0 superseded
 `prototype-driven-bmad-delivery` + `agent-prototype-parity-auditor` (v0.2.0),

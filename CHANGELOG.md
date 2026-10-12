@@ -4,6 +4,22 @@ Every rule below exists because a real agentic-workflow failure produced it
 during weeks of field use on a production server-rendered web application,
 built epic by epic against a standalone SPA prototype. You get the rules without paying for the bugs.
 
+## v0.6.0 (2026-10-12) - scoped context and verifiable visual evidence
+
+- Added the portable `mission.mjs` CLI: scoped context, isolated capture runs,
+  and explicit independent review recording. Installed with the parity skill.
+- Preserves global/ambiguous decisions and existing viewport coverage while
+  excluding unrelated route rows and credentials from model-facing configs.
+- Fresh captures remain mandatory. Only byte-identical composites with intact
+  review, reference, configuration and runtime fingerprints are candidates for
+  visual judgment reuse; interactions are always verified afresh.
+- Added safe failure categories, immutable run directories and 13 CLI tests
+  covering provenance, changed pixels, credential redaction and review guards.
+- The engine honors an explicit Chromium executable so its actual binary can
+  be fingerprinted. Unknown references/runtime disable reuse conservatively.
+- Progress is judged against the concrete finding; an unchanged global pixel
+  percentage alone does not prove a fix failed. Independent review remains.
+
 ## v0.5.1 (2026-08-03) - documentation clarification
 
 - Clarified the kit's original purpose: keep a validated prototype as an

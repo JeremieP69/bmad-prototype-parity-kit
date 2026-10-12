@@ -184,3 +184,25 @@ block signoff.</action>
 Keep from v0.2.x (already folded into the new SKILL.md rules): click-path
 primacy, desktop+mobile as separate verdicts, data-source classification,
 deviations as product decisions.
+
+## Scoped mission context and evidence reuse (v0.6.0)
+
+At story kickoff, run the parity skill's `scripts/mission.mjs context` with
+explicit `--pairs`, then pass its scoped documents and source references to
+the implementer. At the final UI change, use `mission.mjs capture` with the
+same selection. Keep the freshness preflight, independent review and every
+required viewport and interaction check. See
+[the evidence protocol](skills/proto-parity-check/references/mission-evidence.md)
+for commands and review recording.
+
+After a correction or at epic close, `--previous` may propose reuse of an
+explicitly reviewed visual judgment only after a fresh byte-identical capture
+and intact provenance checks. The reviewer confirms candidates and checks
+effects of intervening changes. Reinspect all unknown/changed evidence and
+verify interactions afresh. No review layer is removed. Keep the mission
+scope bounded; do not reload complete planning documents already represented
+by its scoped context.
+
+For BMAD 6.12.2, use supported TOML overrides and its configuration resolver.
+Do not run legacy setup/cleanup helpers to migrate an existing 6.12.2 project;
+this evidence update requires no config migration.
